@@ -25,9 +25,9 @@ int main() {
     vector<int> result = common_elements(arr1, arr2);
 
     for (int i = 0; i < result.size(); i++) {
-        cout << result[i] << " ";
+        cout<<result[i]<<" ";
     }
-    cout << endl;
+    cout<<endl;
 
     return 0;
 }

@@ -64,6 +64,17 @@ int btree_height(Node * root) {
     }
 }
 
+void print_leaf(Node *root) {
+    if (root != NULL) {
+        if (root->left == NULL && root->right == NULL) {
+            std::cout <<root->value<<" ";
+        }
+
+        print_leaf(root->left);
+        print_leaf(root->right);
+    }
+}
+
 int main() {
     Node *tree = create_node(1);
     tree->left = create_node(2);
@@ -89,6 +100,10 @@ int main() {
 
     std::cout<<"Post Order : ";
     traverse_post_order(tree);
+    std::cout<<"\n";
+
+    std::cout<<"Print Leaf : ";
+    print_leaf(tree);
     std::cout<<"\n";
 
     return 0;
