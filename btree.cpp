@@ -67,12 +67,27 @@ int btree_height(Node * root) {
 void print_leaf(Node *root) {
     if (root != NULL) {
         if (root->left == NULL && root->right == NULL) {
-            std::cout <<root->value<<" ";
+            std::cout<<root->value<<" ";
         }
 
         print_leaf(root->left);
         print_leaf(root->right);
     }
+}
+
+Node *find_lca(Node *root, Node *p, Node *q) {
+    if (root == NULL || root == p || root == q) {
+        return root;
+    }
+
+    Node *left = find_lca(root->left, p, q);
+    Node *right = find_lca(root->right, p, q);
+
+    if (left != NULL && right != NULL) {
+        return root;
+    }
+
+    return left != NULL ? left : right;
 }
 
 int main() {
@@ -105,6 +120,10 @@ int main() {
     std::cout<<"Print Leaf : ";
     print_leaf(tree);
     std::cout<<"\n";
+
+    std::cout<<"LCA : ";
+    Node *lca = find_lca(tree, tree->left->left, tree->right->left);
+    std::cout<<lca->value;
 
     return 0;
 }
